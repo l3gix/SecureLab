@@ -4,6 +4,9 @@ import dev.securelab.model.ScanExecution;
 import dev.securelab.repository.ScanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +24,16 @@ public class ScanService
         ScanExecution scan = new ScanExecution(targetKey.trim());
 
         return scanRepository.save(scan);
+    }
+
+    // Recupera tutte le scansioni
+    public List<ScanExecution> getAllScans() {
+        return scanRepository.findAll();
+    }
+
+    // Recupera una scansione tramite Id
+    // Optional puo essere vuoto ecco perchè lo scelto
+    public Optional<ScanExecution>  getScanById(Long id) {
+        return scanRepository.findById(id);
     }
 }
