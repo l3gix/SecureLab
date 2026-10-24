@@ -27,4 +27,8 @@ public class DocumentService
                 .filter( document -> document.getOwner().getId().equals(ownerId));
     }
 
+    public Optional<Document> getDocumentWithoutAuthorization(Long documentId) {
+        return documentRepository.findById(documentId);
+    }
+
 }
